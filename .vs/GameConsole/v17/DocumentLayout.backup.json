@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\Kompyuter\\source\\repos\\GameConsole\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{8C3B4D9E-D745-47C5-AA19-59C615DA243B}|GameConsole\\GameConsole.vcxproj|C:\\Users\\Kompyuter\\source\\repos\\GameConsole\\GameConsole\\Mouse.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8C3B4D9E-D745-47C5-AA19-59C615DA243B}|GameConsole\\GameConsole.vcxproj|solutionrelative:GameConsole\\Mouse.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C3B4D9E-D745-47C5-AA19-59C615DA243B}|GameConsole\\GameConsole.vcxproj|C:\\Users\\Kompyuter\\source\\repos\\GameConsole\\GameConsole\\Mouse.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8C3B4D9E-D745-47C5-AA19-59C615DA243B}|GameConsole\\GameConsole.vcxproj|solutionrelative:GameConsole\\Mouse.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8C3B4D9E-D745-47C5-AA19-59C615DA243B}|GameConsole\\GameConsole.vcxproj|C:\\Users\\Kompyuter\\source\\repos\\GameConsole\\GameConsole\\GameControler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{8C3B4D9E-D745-47C5-AA19-59C615DA243B}|GameConsole\\GameConsole.vcxproj|solutionrelative:GameConsole\\GameControler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -22,11 +30,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Mouse.h",
+              "DocumentMoniker": "C:\\Users\\Kompyuter\\source\\repos\\GameConsole\\GameConsole\\Mouse.h",
+              "RelativeDocumentMoniker": "GameConsole\\Mouse.h",
+              "ToolTip": "C:\\Users\\Kompyuter\\source\\repos\\GameConsole\\GameConsole\\Mouse.h",
+              "RelativeToolTip": "GameConsole\\Mouse.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-29T09:39:24.689Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Mouse.cpp",
+              "DocumentMoniker": "C:\\Users\\Kompyuter\\source\\repos\\GameConsole\\GameConsole\\Mouse.cpp",
+              "RelativeDocumentMoniker": "GameConsole\\Mouse.cpp",
+              "ToolTip": "C:\\Users\\Kompyuter\\source\\repos\\GameConsole\\GameConsole\\Mouse.cpp",
+              "RelativeToolTip": "GameConsole\\Mouse.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-29T09:39:23.871Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "GameControler.h",
               "DocumentMoniker": "C:\\Users\\Kompyuter\\source\\repos\\GameConsole\\GameConsole\\GameControler.h",
               "RelativeDocumentMoniker": "GameConsole\\GameControler.h",
@@ -38,20 +72,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "GameControler.cpp",
               "DocumentMoniker": "C:\\Users\\Kompyuter\\source\\repos\\GameConsole\\GameConsole\\GameControler.cpp",
               "RelativeDocumentMoniker": "GameConsole\\GameControler.cpp",
               "ToolTip": "C:\\Users\\Kompyuter\\source\\repos\\GameConsole\\GameConsole\\GameControler.cpp",
               "RelativeToolTip": "GameConsole\\GameControler.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-28T01:36:55.622Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "GameConsole.cpp",
               "DocumentMoniker": "C:\\Users\\Kompyuter\\source\\repos\\GameConsole\\GameConsole\\GameConsole.cpp",
               "RelativeDocumentMoniker": "GameConsole\\GameConsole.cpp",

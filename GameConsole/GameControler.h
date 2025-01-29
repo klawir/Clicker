@@ -1,43 +1,43 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
+#include "SFMLincludes.h"
+#include "Mouse.h"
 #include <vector>
 #include <ctime>
+#include "Spawner.h"
+#include "Keyboard.h"
+#include "Detection.h"
+
+#define VIDEO_MODE_WIDTH 800
+#define VIDEO_MODE_HEIGHT 600
+#define FRAME_LIMIT 60
+#define FONT_SIZE 42
 
 class GameControler
 {
 private:
 	sf::RenderWindow* _window;
-	sf::Event event;
-	sf::VideoMode videoMode;
-
+	std::vector <sf::RectangleShape> _spawnedCubes;
 	int _points;
-	sf::RectangleShape _enemy;
-	std::vector <sf::RectangleShape> _enemies;
-
-	sf::Vector2i _mousePosition;
-	sf::Vector2f _mousePositionView;
-
-	float _enemySpawnTimer;
-	float _enemySpawnTimerLimit;
-	int _maxEnemies;
-
+	sf::Event _event;
+	sf::Font _font;
+	sf::Text _text;
+	Mouse _mouse;
+	Spawner* _spawner;
 	void InitializeWindow();
+	void InitializeUI();
 
 public:
 	GameControler();
 	virtual ~GameControler();
-	void PollEvents();
+	void ListenToEvents();
 	void UpdateMousePosition();
+	void UpdateText();
 	void Update();
 	void Render();
-	void InitializeEnemies();
-	void SpawnEnemy();
 	void UpdateEnemies();
-	void RenderEnemies();
+	void SpawnEnemies();
+	void RenderText(sf::RenderTarget& target);
+	void RenderEnemies(sf::RenderTarget& target);
 	bool IsRunning();
 };
 
