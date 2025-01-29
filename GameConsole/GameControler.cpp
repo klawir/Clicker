@@ -1,10 +1,12 @@
 #include "GameControler.h"
 #include <iostream>
+#include <sstream>
 
 void GameControler::InitializeWindow()
 {
-	videoMode.width = 800;
-	videoMode.height = 600;
+	sf::VideoMode videoMode;
+	videoMode.width = VIDEO_MODE_WIDTH;
+	videoMode.height = VIDEO_MODE_HEIGHT;
 
 	_window = new sf::RenderWindow(
 		videoMode,
@@ -12,18 +14,28 @@ void GameControler::InitializeWindow()
 		sf::Style::Titlebar |
 		sf::Style::Close);
 
-	_window->setFramerateLimit(60);
+	_window->setFramerateLimit(FRAME_LIMIT);
+}
+
+void GameControler::InitializeUI()
+{
+	if (!_font.loadFromFile("Fonts/game_over.ttf"))
+	{
+		std::cout << "font doesn't exist";
+	}
+
+	_text.setFont(_font);
+	_text.setCharacterSize(42);
+	_text.setFillColor(sf::Color::White);
+	_text.setString("NONE");
 }
 
 GameControler::GameControler()
 {
 	_points = 0;
-	_enemySpawnTimerLimit = 100.f;
-	_enemySpawnTimer = _enemySpawnTimerLimit;
-	_maxEnemies = 5;
-
 	InitializeWindow();
-	InitializeEnemies();
+	InitializeUI();
+	_spawner = new Spawner(_window);
 }
 
 GameControler::~GameControler()
@@ -31,103 +43,89 @@ GameControler::~GameControler()
 
 }
 
-void GameControler::PollEvents()
+void GameControler::ListenToEvents()
 {
-	while (_window->pollEvent(event))
+	while (_window->pollEvent(_event))
 	{
-		switch (event.type)
+		switch (_event.type)
 		{
 			case sf::Event::Closed:
 				_window->close();
 				break;
 			case sf::Event::KeyPressed:
-				if (event.key.code == sf::Keyboard::Escape)
+				if (Keyboard::IsKeyPressed(_event, sf::Keyboard::Escape))
 				{
 					_window->close();
 				}
 				break;
 		}
 	}
-
 }
 
 void GameControler::UpdateMousePosition()
 {
-	_mousePosition = sf::Mouse::getPosition(*this->_window);
-	_mousePositionView = _window->mapPixelToCoords(_mousePosition);
+	_mouse.SetPosition(*this->_window);
+	_mouse.SetViewPosition(_window);
+}
+
+void GameControler::UpdateText()
+{
+	std::stringstream stringStream;
+	stringStream << "Points " << _points;
+	_text.setString(stringStream.str());
 }
 
 void GameControler::Update()
 {
-	PollEvents(); 
+	ListenToEvents(); 
 	UpdateMousePosition();
+	SpawnEnemies();
+	UpdateText();
 	UpdateEnemies();
 }
 
 void GameControler::Render()
 { 
-	_window->clear(sf::Color(100, 100, 50, 50));
-	RenderEnemies();
+	_window->clear(sf::Color::Black);
+	RenderEnemies(*this->_window);
+	RenderText(*this->_window);
 	_window->display();
-}
-
-void GameControler::InitializeEnemies()
-{
-	_enemy.setPosition(10.f, 10.f);
-	_enemy.setSize(sf::Vector2f(50.f, 50.f));
-	//_enemy.setScale(sf::Vector2f(0.5f, 0.5f));
-	_enemy.setFillColor(sf::Color::Blue);
-	_enemy.setOutlineColor(sf::Color::Red);
-	_enemy.setOutlineThickness(1.f);
-}
-
-void GameControler::SpawnEnemy()
-{
-	_enemy.setPosition
-	(
-		static_cast<float>(rand() % static_cast<int>(_window->getSize().x - _enemy.getSize().x)),
-		0.f
-	);
-
-	_enemy.setFillColor(sf::Color::Green);
-	_enemies.push_back(_enemy);
 }
 
 void GameControler::UpdateEnemies()
 {
-	if (_enemies.size() < _maxEnemies)
+	for (int i = 0; i < _spawnedCubes.size(); i++)
 	{
-		if (_enemySpawnTimer >= _enemySpawnTimerLimit)
-		{
-			SpawnEnemy();
-			_enemySpawnTimer = 0.f;
-		}
-		else
-		{
-			_enemySpawnTimer += 1.f;
-		}
-	}
+		_spawnedCubes[i].move(0.f, 1.f);
 
-	for (int i = 0; i < _enemies.size(); i++)
-	{
-		_enemies[i].move(0.f, 1.f);
-
-		if (sf::Mouse::isButtonPressed((sf::Mouse::Left)))
+		if (_mouse.IsLeftButtonPressed() &&
+			Detection::IsBoundsContain(_spawnedCubes[i], _mouse.GetPositionView()))
 		{
-			if (_enemies[i].getGlobalBounds().contains(_mousePositionView))
-			{
-				_enemies.erase(_enemies.begin() + i);
-			}
+			_spawnedCubes.erase(_spawnedCubes.begin() + i);
+			_points++;
 		}
 	}
 }
 
-void GameControler::RenderEnemies()
+void GameControler::SpawnEnemies()
 {
-	for (auto &i : _enemies)
+	if (_spawner->IsInCooldown())
 	{
-		_window->draw(i);
+		_spawnedCubes.push_back(_spawner->Spawn());
 	}
+}
+
+void GameControler::RenderEnemies(sf::RenderTarget& target)
+{
+	for (auto &i : _spawnedCubes)
+	{
+		target.draw(i);
+	}
+}
+
+void GameControler::RenderText(sf::RenderTarget& target)
+{
+	target.draw(_text);
 }
 
 bool GameControler::IsRunning()

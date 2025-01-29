@@ -1,0 +1,5 @@
+﻿  GameConsole.cpp
+  GameControler.cpp
+C:\Users\Kompyuter\source\repos\GameConsole\GameConsole\GameControler.cpp(97,20): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  GameConsole.vcxproj -> C:\Users\Kompyuter\source\repos\GameConsole\Debug\GameConsole.exe
